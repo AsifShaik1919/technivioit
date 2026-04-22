@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tensorflow_federated"
+description = "An open-source framework for machine learning and other computations on decentralized data."
+readme = "README.md"
+requires-python = ">=3.12,<4"
+license = {file = "LICENSE"}
+authors = [
+  { name="TensorFlow Federated Team", email="no-reply@google.com" },
+]
+keywords = ["tensorflow", "federated", "machine", "learning"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Education",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+  'absl-py>=2.0,<3',
+  'attrs~=23.1',
+  'cachetools~=5.3',
+  'dm-tree==0.1.9',
+  'dp-accounting==0.6.0',
+  'grpcio~=1.74',
+  'ml_dtypes>=0.5.0',
+  'numpy~=2.0',
+  'portpicker~=1.6',
+  'scipy~=1.16',
+  'tensorflow>=2.21.0,==2.21.*',
+  'tqdm~=4.64',
+  'typing-extensions>=4.5.0,==4.5.*',
+]
+dynamic = ["version"]
+
+[project.urls]
+"Issues" = "https://github.com/google-parfait/tensorflow-federated/issues"
+"Releases" = "https://github.com/google-parfait/tensorflow-federated/releases"
+"Source" = "https://github.com/google-parfait/tensorflow-federated"
+"Documentation" = "https://www.tensorflow.org/federated"
+
+[tool.distutils.bdist_wheel]
+# Should match the expected GLIBC version defined in `build_python_package.sh`.
+plat-name = "manylinux_2_31_x86_64"
+
+[tool.setuptools.dynamic]
+version = {attr = "tensorflow_federated.version.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["tensorflow_federated*"]
+
+[tool.setuptools.package-data]
+"tensorflow_federated.data" = ["worker_binary"]
